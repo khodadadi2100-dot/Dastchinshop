@@ -1,19 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 190">
-<rect width="620" height="190" rx="38" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 150">
 <g fill="none" stroke="#087a4b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
-<circle cx="112" cy="142" r="23"/><circle cx="245" cy="142" r="23"/>
-<path d="M66 132h55l18-45h58l42 45h48"/>
-<path d="M139 87l24-40h44l29 40M164 47l-8-24M164 47h-25M207 47l18-28 18 28"/>
-<path d="M75 111h42M268 99h92"/>
+<circle cx="86" cy="118" r="19"/><circle cx="174" cy="118" r="19"/>
+<path d="M42 113h30l20-42h55l35 42h28M83 70l25-29h38l22 29M108 41l-5-22M103 41H82M146 41l18-25 17 25"/>
+<path d="M130 67h70l-8 28h-77z" fill="#0b8b52"/>
 </g>
-<path d="M278 83h90l20 49h-108z" fill="#0b8b52"/>
-<rect x="296" y="92" width="54" height="38" rx="6" fill="#fff" stroke="#087a4b" stroke-width="5"/>
-<path d="M307 115l14-15 14 15" fill="none" stroke="#8ed35b" stroke-width="5" stroke-linecap="round"/>
-<circle cx="211" cy="23" r="15" fill="#087a4b"/>
-<path d="M193 25c3-17 17-26 34-23 0 14-12 24-27 25z" fill="#78cf4d"/>
-<path d="M200 43c12-12 27-14 39-3l20 24-30 22-25-24z" fill="#087a4b"/>
-<path d="M225 66l23 20" stroke="#087a4b" stroke-width="10" stroke-linecap="round"/>
-<text x="455" y="98" text-anchor="middle" font-family="Tahoma,Arial,sans-serif" font-size="66" font-weight="900" fill="#087a4b">دستچین</text>
-<text x="455" y="136" text-anchor="middle" font-family="Tahoma,Arial,sans-serif" font-size="18" font-weight="700" fill="#5b493d">تازه، سالم، دستچین شده برای شما</text>
-<path d="M388 151c25 12 50 12 75 0" fill="none" stroke="#78cf4d" stroke-width="5" stroke-linecap="round"/>
+<circle cx="166" cy="30" r="15" fill="#087a4b"/>
+<path d="M155 15c5-13 16-19 28-16-2 12-12 20-25 20" fill="#8ed35b"/>
+<text x="355" y="88" text-anchor="middle" font-family="Tahoma,Arial,sans-serif" font-size="58" font-weight="900" fill="#087a4b">دستچین</text>
+<text x="355" y="120" text-anchor="middle" font-family="Tahoma,Arial,sans-serif" font-size="15" font-weight="700" fill="#176b43">تازه، سالم، دستچین شده برای شما</text>
 </svg>
