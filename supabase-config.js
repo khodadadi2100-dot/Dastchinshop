@@ -5,14 +5,15 @@ window.DASTCHIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_hkQHmGJCe3Mm96JvIn6QEg_
 document.addEventListener('DOMContentLoaded',function(){
   const style=document.createElement('style');
   style.textContent=`
-    .header{isolation:isolate!important;overflow:hidden!important;position:relative!important;height:140px!important}
-    .header:after{z-index:1!important;pointer-events:none!important;left:50%!important;top:-38px!important;width:min(620px,68vw)!important;height:170px!important;border-radius:0 0 115px 115px!important}
+    .header{isolation:isolate!important;overflow:hidden!important;position:relative!important;height:140px!important;background:linear-gradient(180deg,#006f3f 0%,#008d4f 100%)!important}
+    .header:after{z-index:1!important;pointer-events:none!important;left:50%!important;top:-38px!important;width:min(620px,68vw)!important;height:170px!important;border-radius:0 0 115px 115px!important;background:#fff!important}
     .brand{z-index:10!important;pointer-events:none!important;left:50%!important;top:4px!important;width:min(430px,58vw)!important;height:128px!important}
-    .brand img{content:url('logo-header.svg?v=30')!important;width:100%!important;height:118px!important;max-width:none!important;max-height:none!important;object-fit:contain!important}
+    .brand img{content:url('logo-header.svg?v=31')!important;width:100%!important;height:118px!important;max-width:none!important;max-height:none!important;object-fit:contain!important}
     .hamb,.topcart,.account{z-index:30!important;pointer-events:auto!important;touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important}
     .hamb{display:block!important;right:24px!important;top:39px!important}
     .account{display:grid!important;place-items:center!important}
-    .hero{position:relative!important;z-index:2!important}
+    .hero{position:relative!important;z-index:2!important;margin:18px 20px 14px!important;overflow:hidden!important;border-radius:30px!important;background:#fff!important}
+    .hero img{display:block!important;width:100%!important;height:auto!important;aspect-ratio:1024/390!important;object-fit:cover!important;object-position:center!important}
     .overlay{z-index:80!important}
     .drawer,.cart{z-index:90!important}
     .modal{z-index:100!important}
@@ -31,6 +32,8 @@ document.addEventListener('DOMContentLoaded',function(){
       .hamb{right:18px!important;top:39px!important}
       .account{left:18px!important;top:28px!important}
       .topcart{left:80px!important;top:40px!important}
+      .hero{margin:0 0 14px!important;border-radius:0 0 28px 28px!important}
+      .hero img{aspect-ratio:1024/430!important}
       .adminAddGrid{grid-template-columns:1fr!important}
     }
   `;
@@ -91,5 +94,33 @@ document.addEventListener('DOMContentLoaded',function(){
         };
       };
     },900);
+  }
+});
+
+// Live product synchronization: newly created products become visible without a manual rebuild.
+document.addEventListener('DOMContentLoaded',function(){
+  const refreshProducts=async function(){
+    try{
+      if(typeof loadProducts==='function'){
+        await loadProducts();
+        return;
+      }
+      if(typeof supabase==='undefined'||!window.DASTCHIN_SUPABASE_URL)return;
+      const sb=supabase.createClient(window.DASTCHIN_SUPABASE_URL,window.DASTCHIN_SUPABASE_PUBLISHABLE_KEY);
+      const r=await sb.from('products').select('*').or('active.eq.true,is_active.eq.true').order('sort_order').order('created_at',{ascending:false});
+      if(!r.error&&Array.isArray(r.data)&&typeof renderProducts==='function'){
+        products=r.data;
+        renderProducts();
+      }
+    }catch(e){console.warn('Dastchin product refresh:',e)}
+  };
+  const refreshBtn=document.getElementById('refresh');
+  if(refreshBtn)refreshBtn.addEventListener('click',refreshProducts);
+  setTimeout(refreshProducts,700);
+  setInterval(refreshProducts,10000);
+
+  // If the public page was left open while a product was added in admin, refresh its product list promptly.
+  if(location.pathname.endsWith('/')||location.pathname.endsWith('/index.html')||location.pathname.endsWith('index.html')){
+    document.addEventListener('visibilitychange',function(){if(!document.hidden)refreshProducts()});
   }
 });
